@@ -1,5 +1,7 @@
 EQUATION_SIZE = 6
 
+# nao pode ter letras ou algo diferente de dígitos e +-*/ - OK
+# nao pode ter sinais repetidos (ex. 2++2) - OK
 # nao pode começar com * ou / - OK
 # nao pode terminar com sinal nenhum - OK
 # validar tamanho - OK
@@ -10,31 +12,50 @@ def mathler():
 	guess = input("Type your guess: ")
 	if (len(guess) != EQUATION_SIZE):
 		print (f"Wrong size! Has to be {EQUATION_SIZE} long.")
-	if (IsAValidCharacter (guess) == 0):
+	elif (IsAValidCharacter (guess) == False):
 		print ("Not a Valid Character")
-	if (isSignalConsistent(guess) == False):
+	elif (isSignalConsistent(guess) == False):
 		print("Signal inconsistency")
-	if (eval(guess) != 42):
+	elif (eval(guess) != 42):
 		print("Your equation does not yield 42!")
 	elif (guess == equation):
 		print ("You guessed correctly, Mothafocka!!")
 	else:
 		print("Not the correct equation ): try again!")
+		print(getClue(equation, guess))
+
+def getClue(secret_equation, guess):
+	clue = ""
+	i = 0
+	# loop externo, no string de chute
+	for i in range(EQUATION_SIZE):
+		j = 0
+		if guess[i] == secret_equation[i]:
+			clue += "C"
+		elif guess[i] != secret_equation[i]:
+			# loop interno, no string secret_equation
+			for j in range(EQUATION_SIZE):
+				if secret_equation[j] == guess[i]:
+					clue += "T"
+					break
+				if j + 1 == EQUATION_SIZE:
+					clue += "X"
+	return clue
 
 def IsAValidCharacter(guess):
 
 	for element in guess:
-		if (CheckChar (element) == 0):
-			return (0)
-	return (1)
+		if (isNumber(element) == False and isSignal(element) == False):
+			return False
+	return True
 
-def CheckChar(element):
-	valid_characters = "1234567890+-*/"
+def isNumber(element):
+	valid_characters = "1234567890"
 
 	for x in valid_characters:
 		if (element == x):
-			return (1)
-	return (0)
+			return True
+	return False
 
 def isSignal(character):
 	list_of_signal = "-+/*"
@@ -60,7 +81,6 @@ def isSignalConsistent(guess):
 		if isSignal(element) == True:
 			prev = 1
 	return True
-
 
 if __name__ == "__main__":
 	mathler()
