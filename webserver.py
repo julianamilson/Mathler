@@ -14,9 +14,20 @@ def index():
 def display_home():
 	return (render_template('batata.html'))
 
-@app.route('/clues')
+@app.route('/clues', methods=['POST'])
 def goGetClue():
-	return mathler.getClue("40+1+1", "-42+84")
+	print("request data:")
+	print(request.data)
+	print("request stripped:")
+	print(request.data.strip("b"))
+	return mathler.getClue("40+1+1", request.data)
+
+
+@app.route('/clue', methods=['POST'])
+def testgoGetClue():
+	data = request.args.get ('guess')
+	return mathler.mathler(data)
+	
 
 if __name__== "__main__":
 	app.run(debug=True)

@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Batatas fritas!</title>
+		<title>FT_MATHLER - dontpanic_baby!</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 	</head>
 	<body>
-		<p>This is an example of a simple HTML page with one paragraph.</p>
+		<div class="topnav">
+			<a class="active" href="#home">How to play</a>
+			<div class="dropdown">
+				<a href="#contact">Contact</a>
+				<div class="dropdown-content">
+						<a href="https://github.com/julianamilson/">jmilson-</a>
+						<a href="https://github.com/rodsmade/">roaraujo</a>
+						<a href="https://github.com/pluis29/">lpaulo-d</a>
+						<a href="https://github.com/phill9242/">phiolive</a>
+				</div>
+			</div>
+		</div>
+		<h1>FT_MATHLER</h1>
+		<p>Try to guess the hidden equation that leads to the answer to life, the universe and everything 👽🪐</p>
+			
+
+		<!-- <form id="guessed_equation">
+			<input type="text" maxlength="6" minlength="6" id="guess" name="guess" autofocus placeholder="Type in your equation...">
+			<button id="send_button" form="guessed_equation" formaction="localhost:5000/clues" formmethod="get">Fire away!</button>
+		</form> -->
+		<div class="container" id="last_guess">
+			<div class="item" id="guess"></div>
+			<div class="item" id="guess"></div>
+			<div class="item" id="guess"></div>
+			<div class="item" id="guess"></div>
+			<div class="item" id="guess"></div>
+			<div class="item" id="guess"></div>
+		</div>
+		<div class="container" id="clue">
+			<div class="item" id="clue1">C</div>
+			<div class="item" id="clue2">X</div>
+			<div class="item" id="clue3">X</div>
+			<div class="item" id="clue4">C</div>
+			<div class="item" id="clue5">X</div>
+			<div class="item" id="clue6">C</div>
+		</div>
+		<!-- <!-- <div class="container" id="clue">
+			<div class="item" id="clue1"></div>
+			<div class="item" id="clue2"></div>
+			<div class="item" id="clue3"></div>
+			<div class="item" id="clue4"></div>
+			<div class="item" id="clue5"></div>
+			<div class="item" id="clue6"></div>
+		</div> -->
+		<!-- <div class="container" id="clue">
+			<div class="item" id="clue1"></div>
+			<div class="item" id="clue2"></div>
+			<div class="item" id="clue3"></div>
+			<div class="item" id="clue4"></div>
+			<div class="item" id="clue5"></div>
+			<div class="item" id="clue6"></div>
+		</div> --> -->
+
+	<footer>
+		<p>🦶</p>
+		<p>OS ASTERISMOS, dontpanic_baby!</p>
+		<p>42Labs, 2022.</p>
+		<!-- <p>don't forget to like and suscryyyyyyyyy</p> -->
+	</footer>
 	</body>
-</html>
+	</html>

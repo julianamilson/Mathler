@@ -6,23 +6,21 @@ EQUATION_SIZE = 6
 # nao pode terminar com sinal nenhum - OK
 # validar tamanho - OK
 # ver se dá 42 - OK
-def mathler():
+def mathler(guess):
 	equation = "39+1+2"
 
-	guess = input("Type your guess: ")
 	if (len(guess) != EQUATION_SIZE):
-		print (f"Wrong size! Has to be {EQUATION_SIZE} long.")
+		return (f"Wrong size! Has to be {EQUATION_SIZE} long.")
 	elif (IsAValidCharacter (guess) == False):
-		print ("Not a Valid Character")
+		return ("Not a Valid Character")
 	elif (isSignalConsistent(guess) == False):
-		print("Signal inconsistency")
+		return("Signal inconsistency")
 	elif (eval(guess) != 42):
-		print("Your equation does not yield 42!")
+		return("Your equation does not yield 42!")
 	elif (guess == equation):
-		print ("You guessed correctly, Mothafocka!!")
+		return ("You guessed correctly, Mothafocka!!")
 	else:
-		print("Not the correct equation ): try again!")
-		print(getClue(equation, guess))
+		return(getClue(equation, guess))
 
 def getClue(secret_equation, guess):
 	clue = ""
