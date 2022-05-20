@@ -11,23 +11,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 		if (code == "Enter" && availableChars == 0) {
 			// handleSubmitWord()
-			var temp = `{"guess": "${guess}"}`
-			var fileJson = JSON.parse(temp)
+			var jsonBody = `{"guess" : "${guess}"}`
+			// var fileJson = JSON.parse(temp)
 			fetch(
 				`http://localhost:5000/clues`,
 				{
+					headers: {
+						'Content-Type': 'application/json'
+					},
 					method: "POST",
-					body: fileJson
+					body: jsonBody
 				}
-			).then((res) => {
-				if (!res.ok) {
+			).then((response) => {
+				if (!response.ok) {
 					throw Error()
 				}
 				console.log("deu bom!!");
-				console.log(res.body);
+				console.log(response.body);
 			}).catch(() => {
 				window.alert("Deu ruim, body no console log");
-				console.log(res.body);
+				console.log(response.body);
 			})
 			return;
 		}
