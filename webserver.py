@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Response
 import mathler
 import json
 
@@ -24,9 +24,9 @@ def goGetClue():
 	response_body_JSON = json.loads(response_body)
 	return response_body_JSON
 
-@app.route('/teste')
-def testingEndpoint():
-	return mathler.getClue("40+1+1", "40+1+1")
+@app.route('/favicon.ico')
+def favicon():
+	return ""
 
 @app.route('/README.md')
 def readMe():

@@ -20,15 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
 					method: "POST",
 					body: jsonBody
 				}
-			).then((response) => {
-				if (!response.ok) {
-					throw Error()
-				}
-				console.log("deu bom!!");
-				console.log(response.body);
-			}).catch(() => {
-				window.alert("Deu ruim, body no console log");
-				console.log(response.body);
+			).then(response=>response.json())
+			.then(data=>{
+				console.log(data);
+				if (data.error)
+					window.alert(data.error);
+				else if (data.clue)
+					window.alert(data.clue);
 			})
 			return;
 		}
@@ -44,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		
 		if (/^[0-9]$/i.test(key) || /^[-*+/]$/i.test(key)) {
-			// updateGuessedWords(key);
 			if (availableChars)
 			{
 				guessChars[6 - availableChars].textContent = key;
