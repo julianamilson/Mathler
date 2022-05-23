@@ -19,24 +19,10 @@ def display_home():
 def goGetClue():
 	content_type = request.headers.get('Content-Type')
 	if (content_type == 'application/json'):
-		print("content type ok !!")
-		k = request.get_json()
-		print("get!!")
-		print(k)
-		print(k['guess'])
-		print(type(k['guess']))
-		#print(obj['guess'])
-	else:
-		print("wrong content type")
-		print(content_type)
-		print(request)
-	return mathler.mathler(k['guess'])
-	# print("teste")
-	# y = request.json
-	# print("teste2")
-	# print(y)
-	# print("teste3")
-	# return mathler.getClue("40+1+1", request.data)
+		request_body_JSON = request.get_json()
+	response_body = JSON_wrap(mathler.mathler(request_body_JSON['guess']))
+	response_body_JSON = json.loads(response_body)
+	return response_body_JSON
 
 @app.route('/teste')
 def testingEndpoint():
@@ -45,10 +31,17 @@ def testingEndpoint():
 @app.route('/README.md')
 def readMe():
 	return ("README.md")
-# @app.route('/clue', methods=['POST'])
-# def testgoGetClue():
-# 	data = request.args.get ('guess')
-# 	return mathler.mathler(data)
+
+def JSON_wrap(msg):
+	msg_JSON = "{\""
+	if len(msg) == 6:
+		msg_JSON += "clue\":\""
+	else:
+		msg_JSON += "error\":\""
+	msg_JSON += msg
+	msg_JSON += "\"}"
+	return msg_JSON
+
 
 if __name__== "__main__":
 	app.run(debug=True)

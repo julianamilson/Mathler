@@ -17,8 +17,6 @@ def mathler(guess):
 		return("Signal inconsistency")
 	elif (eval(guess) != 42):
 		return("Your equation does not yield 42!")
-	elif (guess == equation):
-		return ("You guessed correctly, Mothafocka!!")
 	else:
 		return(getClue(equation, guess))
 
@@ -79,6 +77,3 @@ def isSignalConsistent(guess):
 		if isSignal(element) == True:
 			prev = 1
 	return True
-
-if __name__ == "__main__":
-	mathler()

@@ -8,11 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.addEventListener('keydown', (event) => {
 		var code = event.code;
 		var key = event.key;
-		
-		if (code == "Enter" && availableChars == 0) {
-			// handleSubmitWord()
+
+		if (key == "Enter" && availableChars == 0) {
 			var jsonBody = `{"guess" : "${guess}"}`
-			// var fileJson = JSON.parse(temp)
 			fetch(
 				`http://localhost:5000/clues`,
 				{
