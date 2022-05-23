@@ -1,6 +1,10 @@
 from flask import Flask, request, render_template, Response
 import mathler
 import json
+# markdown formatting:
+from pygments.formatters import HtmlFormatter
+import markdown
+import markdown.extensions.fenced_code
 
 app = Flask(__name__)
 
@@ -30,7 +34,15 @@ def favicon():
 
 @app.route('/README.md')
 def readMe():
-	return ("README.md")
+	readme_file = open("README.md", "r")
+	md_template_string = markdown.markdown(
+		readme_file.read(), extensions=["fenced_code", "codehilite"]
+	)
+	formatter = HtmlFormatter(style="emacs",full=True,cssclass="codehilite")
+	css_string = formatter.get_style_defs()
+	md_css_string = "<style>" + css_string + "</style>"
+	md_template = md_css_string + md_template_string
+	return md_template
 
 def JSON_wrap(msg):
 	msg_JSON = "{\""
