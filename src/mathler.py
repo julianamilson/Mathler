@@ -13,12 +13,31 @@ def mathler(guess):
 		return (f"Wrong size! Has to be {EQUATION_SIZE} long.")
 	elif (IsAValidCharacter (guess) == False):
 		return ("Not a Valid Character")
-	elif (isSignalConsistent(guess) == False):
-		return("Signal inconsistency")
+	elif (isSignConsistent(guess) == False):
+		return("Sign inconsistency")
+	elif (isValidToEval (guess) == False):
+		return ("The current equation it's not eligible to Eval function!")
 	elif (eval(guess) != 42):
 		return("Your equation does not yield 42!")
 	else:
 		return(getClue(equation, guess))
+
+def isValidToEval (guess):
+
+	trigger = False
+
+	for i in range (len(guess)):
+		if (i < 5 and guess[i] == "0" and isNumber (guess[i + 1]) == True and trigger == False):
+			return (False)
+		elif (i < 5 and guess[i] == "/" and guess[i + 1] == "0"):
+			return (False)
+		elif (isNumber (i) == True):
+			trigger = True
+		elif (isNumber (i) == False):
+			trigger = False
+
+		
+	return (True)
 
 def getClue(secret_equation, guess):
 	clue = ""
@@ -41,7 +60,7 @@ def getClue(secret_equation, guess):
 def IsAValidCharacter(guess):
 
 	for element in guess:
-		if (isNumber(element) == False and isSignal(element) == False):
+		if (isNumber(element) == False and isSign(element) == False):
 			return False
 	return True
 
@@ -53,27 +72,27 @@ def isNumber(element):
 			return True
 	return False
 
-def isSignal(character):
-	list_of_signal = "-+/*"
+def isSign(character):
+	list_of_Sign = "-+/*"
 
-	for i in list_of_signal:
+	for i in list_of_Sign:
 		if character == i:
 			return True
 	return False
 
-def isSignalConsistent(guess):
+def isSignConsistent(guess):
 
 	prev = 0
 
 	if (guess[0] == "/" or guess[0] == "*"):
 		return False
-	if isSignal(guess[len(guess) - 1]):
+	if isSign(guess[len(guess) - 1]):
 		return False
 	for element in guess:
-		if isSignal(element) == True and prev == 1:
+		if isSign(element) == True and prev == 1:
 			return False
-		if prev == 1 and isSignal(element) == False:
+		if prev == 1 and isSign(element) == False:
 			prev = 0
-		if isSignal(element) == True:
+		if isSign(element) == True:
 			prev = 1
 	return True
