@@ -1,11 +1,12 @@
-EQUATION_SIZE = 6
-
 # nao pode ter letras ou algo diferente de dígitos e +-*/ - OK
 # nao pode ter sinais repetidos (ex. 2++2) - OK
 # nao pode começar com * ou / - OK
 # nao pode terminar com sinal nenhum - OK
 # validar tamanho - OK
 # ver se dá 42 - OK
+
+EQUATION_SIZE = 6
+
 def mathler(guess):
 	equation = "39+1+2"
 

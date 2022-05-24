@@ -361,3 +361,173 @@ class test_mathler_getClue(unittest.TestCase):
 		
 		response = getClue(equation, input)
 		self.assertEqual(response, expected_response)
+
+class test_mathler_main(unittest.TestCase):
+
+	def test_mathler_input_empty_str_returns_Empty_input_msg(self):
+		input = ""
+		expected_response = "Empty input!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_none_returns_Empty_input_msg(self):
+		input = None
+		expected_response = "Empty input!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_7_characters_long_returns_Wrong_size_msg(self):
+		input = "42+42+4"
+		expected_response = "Wrong size! Has to be 6 long."
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_5_characters_long_returns_Wrong_size_msg(self):
+		input = "42+42"
+		expected_response = "Wrong size! Has to be 6 long."
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_3_characters_long_returns_Wrong_size_msg(self):
+		input = "42+"
+		expected_response = "Wrong size! Has to be 6 long."
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+	
+	def test_mathler_input_invalid_character_a_returns_Not_a_Valid_Character_msg(self):
+		input = "42+a42"
+		expected_response = "Not a Valid Character"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_invalid_character_Z_returns_Not_a_Valid_Character_msg(self):
+		input = "42+Z42"
+		expected_response = "Not a Valid Character"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_invalid_character_t_returns_Not_a_Valid_Character_msg(self):
+		input = "42+t-2"
+		expected_response = "Not a Valid Character"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_double_plus_sign_united_returns_sign_inconsistency_msg(self):
+		input = "42++42"
+		expected_response = "Sign inconsistency"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_times_sign_and_plus_sign_united_returns_sign_inconsistency_msg(self):
+		input = "42*+42"
+		expected_response = "Sign inconsistency"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+	
+	def test_mathler_input_initial_times_sign_returns_sign_inconsistency_msg(self):
+		input = "*22+42"
+		expected_response = "Sign inconsistency"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_end_with_minus_sign_returns_sign_inconsistency_msg(self):
+		input = "22+42-"
+		expected_response = "Sign inconsistency"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_end_with_times_sign_returns_sign_inconsistency_msg(self):
+		input = "22+42*"
+		expected_response = "Sign inconsistency"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+	
+	def test_mathler_input_end_with_divide_sign_returns_sign_inconsistency_msg(self):
+		input = "22+42/"
+		expected_response = "Sign inconsistency"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+	
+	def test_mathler_input_invalid_equation_042_times_23_returns_eval_error_msg(self):
+		input = "042*23"
+		expected_response = "The current equation it's not eligible to Eval function!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_invalid_equation_42_divideded_0_plus_1_returns_eval_error_msg(self):
+		input = "42/0+1"
+		expected_response = "The current equation it's not eligible to Eval function!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_invalid_equation_42_plus_0_0_0_returns_eval_error_msg(self):
+		input = "42+001"
+		expected_response = "The current equation it's not eligible to Eval function!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+	
+	def test_mathler_input_valid_equation_42_plus_420_returns_result_error_msg(self):
+		input = "42*420"
+		expected_response = "Your equation does not yield 42!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_42_plus_1_plus_0_returns_result_error_msg(self):
+		input = "40+1+0"
+		expected_response = "Your equation does not yield 42!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+	
+	def test_mathler_input_valid_equation_19_plus_2_times_2_returns_result_error_msg(self):
+		input = "19+2*2"
+		expected_response = "Your equation does not yield 42!"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_30_plus_8_plus_4_returns_clue_CXCXCX(self):
+		input = "30+8+4"
+		expected_response = "CXCXCX"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_30_plus_6_times_2_returns_clue_CXCXXC(self):
+		input = "30+6*2"
+		expected_response = "CXCXXC"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_43_minus_3_times_2_returns_clue_XTXTCC(self):
+		input = "43-3+2"
+		expected_response = "XTXTCC"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_504_divide_12_returns_clue_XXXXTC(self):
+		input = "504/12"
+		expected_response = "XXXXTC"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_correct_equation_39_plus_1_plus_2_returns_clue_CCCCCC(self):
+		input = "39+1+2"
+		expected_response = "CCCCCC"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_39_plus_2_plus_1_returns_clue_CCCTCT(self):
+		input = "39+2+1"
+		expected_response = "CCCTCT"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_49_minus_5_minus_2_returns_clue_XCXXXC(self):
+		input = "49-5-2"
+		expected_response = "XCXXXC"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
+
+	def test_mathler_input_valid_equation_50_minus_4_minus_4_returns_clue_XXXXXX(self):
+		input = "50-4-4"
+		expected_response = "XXXXXX"
+		response = mathler(input)
+		self.assertEqual(response, expected_response)
