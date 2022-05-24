@@ -22,11 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			).then(response=>response.json())
 			.then(data=>{
-				console.log(data);
 				if (data.error)
 					window.alert(data.error);
 				else if (data.clue)
-					window.alert(data.clue);
+					if (data.clue == "CCCCCC")
+						window.alert("🎉 You won! ! ! 🎉");
+					else
+						printClueOnScreen(data.clue)
 			})
 			return;
 		}
@@ -53,4 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}, false);
 })
 
-
+function printClueOnScreen(clue)
+{
+	window.alert(clue);
+}

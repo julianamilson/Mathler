@@ -17,7 +17,7 @@ def index():
 
 @app.route('/home')
 def display_home():
-	return (render_template('batata.html'))
+	return (render_template('index.html'))
 
 @app.route('/clues', methods=['POST'])
 def goGetClue():
