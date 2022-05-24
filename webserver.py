@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, Response
-import mathler
+import src.mathler as mathler
 import json
 # markdown formatting:
 from pygments.formatters import HtmlFormatter
@@ -42,7 +42,8 @@ def readMe():
 	css_string = formatter.get_style_defs()
 	md_css_string = "<style>" + css_string + "</style>"
 	md_template = md_css_string + md_template_string
-	return md_template
+	return render_template('README.html', stringOfMarkdown = md_template)
+	# return md_template
 
 def JSON_wrap(msg):
 	msg_JSON = "{\""

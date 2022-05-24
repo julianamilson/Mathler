@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>FT_MATHLER - dontpanic_baby!</title>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/readme_style.css') }}">
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+	</head>
+	<body>
+		<div class="topnav">
+			<a class="active" href="README.md" target="_blank">How to play</a>
+			<div class="dropdown">
+				<a href="#contact">Contact</a>
+				<div class="dropdown-content">
+						<a href="https://github.com/julianamilson/">jmilson-</a>
+						<a href="https://github.com/rodsmade/">roaraujo</a>
+						<a href="https://github.com/pluis29/">lpaulo-d</a>
+						<a href="https://github.com/phill9242/">phiolive</a>
+				</div>
+			</div>
+		</div>
+		{{ stringOfMarkdown|safe }}
+		<footer>
+			<p>🦶</p>
+			<p>OS ASTERISMOS, dontpanic_baby!</p>
+			<p>42Labs, 2022.</p>
+		</footer>
+	</body>
+	</html>
