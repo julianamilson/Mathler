@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	let availableChars = 6;
 	
 	let guessChars = document.querySelectorAll("#guess")
+	let clueChars = document.querySelectorAll("#clue")
+	let attemptChars = document.querySelectorAll("#last_attempt")
 	
 	document.addEventListener('keydown', (event) => {
 		var code = event.code;
@@ -25,10 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (data.error)
 					window.alert(data.error);
 				else if (data.clue)
-					if (data.clue == "CCCCCC")
-						window.alert("🎉 You won! ! ! 🎉");
-					else
-						printClueOnScreen(data.clue)
+				{
+					printClueOnScreen(data.clue)
+					printLastAttemptOnScreen(guess)
+					clearGuessOnScreen()
+				}
 			})
 			return;
 		}
@@ -53,9 +56,30 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	
 	}, false);
-})
 
-function printClueOnScreen(clue)
-{
-	window.alert(clue);
-}
+	function printClueOnScreen(clue)
+	{
+		for (var i = 0; i < clue.length; i++) {
+			clueChars[i].textContent = clue.charAt(i);
+		}
+
+		if (clue == "CCCCCC")
+			window.alert("🎉 You won! ! ! 🎉");
+	}
+	
+	function printLastAttemptOnScreen(attempt)
+	{
+		for (var i = 0; i < attemptChars.length; i++) {
+			attemptChars[i].textContent = attempt.charAt(i);
+		}
+	}
+
+	function clearGuessOnScreen()
+	{
+		for (var i = 0; i < guessChars.length; i++) {
+			guessChars[i].textContent = "";
+		}
+		availableChars = 6;
+		guess = "";
+	}
+})

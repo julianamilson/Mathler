@@ -14,14 +14,16 @@ body {
 	margin-top: 3%;
 	/* padding-left: 25%;
 	padding-right: 25%; */
+	align-items: center;
+	margin-right: 10%;
 }
 
 .item {
 	border-color: rgb(0, 247, 0);
 	background-color: palegreen;
 	flex-direction: row;
-	height: 140px;
-	width: 90px;
+	height: 100px;
+	width: 70px;
 	border-radius: 15%;
 	border-style: solid;
 	color: black;
@@ -30,6 +32,18 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-size: 5rem;
+	/* flex-grow: 3; */
+}
+
+.label {
+	border-color: none;
+	background-color: none;
+	width: 170px;
+	/* justify-content: center; */
+	/* line-height: 100px; */
+	/* transform: translateY(40%); */
+	text-align: right;
+	/* flex-grow: 1; */
 }
 
 /* Nav Bar Style! */
