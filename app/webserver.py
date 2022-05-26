@@ -1,5 +1,7 @@
-from apiflask import APIFlask
-from flask import Flask, request, render_template, Response
+from apiflask import APIFlask, Schema, abort
+from apiflask.fields import Integer, String
+from apiflask.validators import Length, OneOf
+from flask import Flask, request, render_template, Response, redirect
 import src.mathler as mathler
 import json
 # markdown formatting:
@@ -9,12 +11,16 @@ import markdown.extensions.fenced_code
 
 app = APIFlask(__name__)
 
-@app.route('/home')
+class inClues(Schema):
+	guess = String(required=True, validate=Length(6, 6))
+
+@app.route('/')
 def display_home():
 	return (render_template('index.html'))
 
-@app.route('/clues', methods=['POST'])
-def goGetClue():
+@app.post('/clues')
+@app.input(inClues)
+def clue(data):
 	content_type = request.headers.get('Content-Type')
 	if (content_type == 'application/json'):
 		request_body_JSON = request.get_json()
@@ -45,7 +51,6 @@ def JSON_wrap(msg):
 	msg_JSON += msg
 	msg_JSON += "\"}"
 	return msg_JSON
-
 
 if __name__== "__main__":
 	app.run(debug=True)
