@@ -3,34 +3,64 @@
 [Application setup](#setup)  
 
 
-
-
 <a name="docs"></a>
 # API Documentation
 
-asdlkasldk
+Here's a quick guide of our application's endpoints, expected request format and possible response and status codes.
 
-asdkas
 
-dkasdlaskdasld
+## GET /home
+- This is a simple GET request to retrieve an index.html landing page. It's where you can play our game!
 
-kas
+## GET /README.md
+- This is a simple GET request to retrieve an index.html landing page. It's where you can learn how to play our game!
 
-aslkdas
+## POST /clues
+- Required header:
+```Content-Type': 'application/json'```
 
-dkas
+- Required field:
+```
+`guess` (type: `str`)
+```
 
-dkad
+Examples:
+Error response:
+Request Body:
+```
+{
+	"guess" : "15+12+15"
+}
+```
+Response:
+```
+status: 200
+body:
+{
+	"error": "Wrong size! Has to be 6 long."
+}
+```
 
-laskd
+Success response:
+```
+{
+	"guess" : "40+1+1"
+}
+```
+Response:
+```
+status: 200
+body:
+{
+	"clue": "XXCCCT"
+}
+```
 
-laskda
 
-sldkasd
+Response Example:
+```
 
-asldkas
-
-ldk
+```
 
 
 <a name="setup"></a>
