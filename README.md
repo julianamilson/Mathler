@@ -9,13 +9,13 @@
 Here's a quick guide of our application's endpoints, expected request format and possible response and status codes.
 
 
-## GET /home
+### `GET /home`
 - This is a simple GET request to retrieve an index.html landing page. It's where you can play our game!
 
-## GET /README.md
+### `GET /README.md`
 - This is a simple GET request to retrieve an index.html landing page. It's where you can learn how to play our game!
 
-## POST /clues
+### `POST /clues`
 - Required header:
 ```Content-Type': 'application/json'```
 
