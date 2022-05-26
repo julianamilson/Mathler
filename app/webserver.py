@@ -1,3 +1,4 @@
+from apiflask import APIFlask
 from flask import Flask, request, render_template, Response
 import src.mathler as mathler
 import json
@@ -6,14 +7,7 @@ from pygments.formatters import HtmlFormatter
 import markdown
 import markdown.extensions.fenced_code
 
-app = Flask(__name__)
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-	if request.method == 'POST':
-		return "Hello world!"
-	if request.method == 'GET':
-		return "World Hello!"
+app = APIFlask(__name__)
 
 @app.route('/home')
 def display_home():
@@ -24,13 +18,11 @@ def goGetClue():
 	content_type = request.headers.get('Content-Type')
 	if (content_type == 'application/json'):
 		request_body_JSON = request.get_json()
-	response_body = JSON_wrap(mathler.mathler(request_body_JSON['guess']))
-	response_body_JSON = json.loads(response_body)
-	return response_body_JSON
-
-@app.route('/favicon.ico')
-def favicon():
-	return ""
+		response_body = JSON_wrap(mathler.mathler(request_body_JSON['guess']))
+		response_body_JSON = json.loads(response_body)
+		return response_body_JSON
+	else:
+		return "Double check your headers", 400
 
 @app.route('/README.md')
 def readMe():
@@ -43,7 +35,6 @@ def readMe():
 	md_css_string = "<style>" + css_string + "</style>"
 	md_template = md_css_string + md_template_string
 	return render_template('README.html', stringOfMarkdown = md_template)
-	# return md_template
 
 def JSON_wrap(msg):
 	msg_JSON = "{\""
