@@ -1,4 +1,15 @@
-# Installing dependencies
+##### Table of Contents  
+[API Documentation](#docs)  
+[Application setup](#setup)  
+
+
+<a name="docs"/>
+# API Documentation
+
+
+<a name="docs"/>
+# Application setup
+## Installing dependencies
 
 To install the required dependencies to build and run this project, run:
 
@@ -6,7 +17,7 @@ To install the required dependencies to build and run this project, run:
 pip install -r dependencies.txt
 ```
 
-# Running webserver
+## Running webserver
 
 To run the webserver, run:
 
@@ -17,7 +28,7 @@ python3 webserver.py
 
 Open your browser and connect to `localhost:5000/home` to play the game!
 
-# Running unit tests
+## Running unit tests
 
 To run unit tests, run:
 
