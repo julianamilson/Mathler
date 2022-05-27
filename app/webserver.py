@@ -1,10 +1,13 @@
+# API framework (Flask + APIFlask):
+from flask import Flask, request, render_template, Response, redirect
 from apiflask import APIFlask, Schema, abort
 from apiflask.fields import Integer, String
 from apiflask.validators import Length, OneOf
-from flask import Flask, request, render_template, Response, redirect
-import src.mathler as mathler
+# JSON formatter:
 import json
-# markdown formatting:
+# Our game:
+import src.mathler as mathler
+# Markdown formatting:
 from pygments.formatters import HtmlFormatter
 import markdown
 import markdown.extensions.fenced_code
@@ -53,4 +56,4 @@ def JSON_wrap(msg):
 	return msg_JSON
 
 if __name__== "__main__":
-	app.run(debug=True)
+	app.run("0.0.0.0")
