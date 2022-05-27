@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 WORKDIR /app_generic
 
 RUN apt-get update -y 
